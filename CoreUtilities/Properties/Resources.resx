@@ -1,0 +1,600 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="NO_REPOSITORY" xml:space="preserve">
+    <value>No repository set! </value>
+    <comment>error when no connection string is available</comment>
+  </data>
+  <data name="GENERAL_ERROR" xml:space="preserve">
+    <value>There was an error performing your request.  Please try again later.</value>
+  </data>
+  <data name="KEY_NOT_FOUND" xml:space="preserve">
+    <value>Could not find the specified key.  Please check your ID and try again.</value>
+  </data>
+  <data name="FIELD_LENGTH" xml:space="preserve">
+    <value>This field must be less than {MaxLength} characters.</value>
+  </data>
+  <data name="FIELD_LIST" xml:space="preserve">
+    <value>Value must be in the list of acceptable values.  Please see the documentation for further details.</value>
+  </data>
+  <data name="FIELD_REQUIRED" xml:space="preserve">
+    <value>This field is required</value>
+  </data>
+  <data name="FOLDER_DELETE_ROOT" xml:space="preserve">
+    <value>You cannot delete the root folder</value>
+  </data>
+  <data name="FOLDER_DELETE_EMPTY" xml:space="preserve">
+    <value>You cannot delete a folder that contains documents</value>
+  </data>
+  <data name="FOLDER_DELETE_ACCESS" xml:space="preserve">
+    <value>You must have access to this folder and all sub-folders in order to delete</value>
+  </data>
+  <data name="FOLDER_DELETE_SAMENAME" xml:space="preserve">
+    <value>One of the subfolders has the same name as a sibling folder.  Rename that folder before deleting.</value>
+  </data>
+  <data name="SPECIFIC_FIELD_REQUIRED" xml:space="preserve">
+    <value>{PropertyName} is required</value>
+  </data>
+  <data name="VAL_LOCAL_DOMAIN" xml:space="preserve">
+    <value>When local authentication is set, you must choose the Ensur domain.</value>
+  </data>
+  <data name="VAL_LOCAL_PW" xml:space="preserve">
+    <value>You must use local authentication when setting your own passwords.</value>
+  </data>
+  <data name="FILE_CREATE_ERROR" xml:space="preserve">
+    <value>There was a problem creating the following file/folder {PATH}</value>
+  </data>
+  <data name="PW_MIN_LENGTH" xml:space="preserve">
+    <value>Password must be at least {LENGTH} characters long</value>
+  </data>
+  <data name="PW_LOWER" xml:space="preserve">
+    <value>Password must contain at least one lower case character</value>
+  </data>
+  <data name="PW_UPPER" xml:space="preserve">
+    <value>Password must contain at least one upper case character</value>
+  </data>
+  <data name="PW_NUMBER" xml:space="preserve">
+    <value>Password must contain at least one number</value>
+  </data>
+  <data name="PW_SPECIAL" xml:space="preserve">
+    <value>Password must contain at least one special character</value>
+  </data>
+  <data name="PW_DISALLOWED" xml:space="preserve">
+    <value>This password is on the disallowed password list.  Please pick another password.</value>
+  </data>
+  <data name="NO_CONTENT" xml:space="preserve">
+    <value>You are attempting to view this content, but no original or publish content has been loaded. Please import content and try your request again.</value>
+  </data>
+  <data name="NO_ACCESS" xml:space="preserve">
+    <value>You are attempting to view this content, but you do not have proper access to this document in the Ensur system. Please contact your System Administrator for assistance.</value>
+  </data>
+  <data name="NO_PDF" xml:space="preserve">
+    <value>You are attempting to view Published content, but it must be a PDF in order to apply the overlay. Please refresh your browser, import published PDF content and try your request again.</value>
+  </data>
+  <data name="FILE_DELETE_ERROR" xml:space="preserve">
+    <value>There was a problem deleting the following file/folder {PATH}</value>
+  </data>
+  <data name="NO_PUBLISHED_CONTENT" xml:space="preserve">
+    <value>No Published Content.  You are attempting to view published content , but no such content has been loaded.  Please import published content and try again.</value>
+  </data>
+  <data name="NO_ORIGINAL_CONTENT" xml:space="preserve">
+    <value>No Original Content. You are attempting to view original content, but no such content has been loaded.  Please import original content and try your request again.</value>
+  </data>
+  <data name="INVALID_FOLDER_PATH" xml:space="preserve">
+    <value>Could not find all or part of the folder path.  Please check the path and try again.</value>
+  </data>
+  <data name="DOCUMENT_NOT_FOUND" xml:space="preserve">
+    <value>Could not find a document with the ID of {ID}.  Please check your ID and try again.</value>
+  </data>
+  <data name="MISSING_RIGHTS" xml:space="preserve">
+    <value>You do not have the required rights to perform this action.  Please contact your system administrator for assistance. </value>
+  </data>
+  <data name="INVALID_VALUE" xml:space="preserve">
+    <value>You have specified an invalid value for this field.</value>
+  </data>
+  <data name="FILE_TYPE_NOT_ALLOWED" xml:space="preserve">
+    <value>This type of file is not allowed.  Please contact your system administrator for more information.</value>
+  </data>
+  <data name="FILE_MIME_INCORRECT" xml:space="preserve">
+    <value>File MIME/Content type does not match extension MIME/Content type.  Please check that the file you are uploading is in the correct format and named properly.</value>
+  </data>
+  <data name="DOCUMENT_CHECKED_OUT" xml:space="preserve">
+    <value>This document is already checked out by {USER}.  Please either contact them or undo the checkout before proceeding.</value>
+  </data>
+  <data name="NOT_AUTHORIZED" xml:space="preserve">
+    <value>You are not authorized to perform this operation.  Please talk to your system administrator for more information.</value>
+  </data>
+  <data name="DOCUMENT_CHECKOUT_STATUS" xml:space="preserve">
+    <value>This document is not in a status that is eligible for checkout.</value>
+  </data>
+  <data name="DOCUMENT_NO_SUB_CHECKOUT" xml:space="preserve">
+    <value>Submitters are not allowed to checkout content that they have submitted for review per system configuration.</value>
+  </data>
+  <data name="DOCUMENT_EDIT_REVIEW" xml:space="preserve">
+    <value>This content record prohibits checkouts for this review cycle.</value>
+  </data>
+  <data name="DOCUMENT_NO_REVIEWERS" xml:space="preserve">
+    <value>There are no eligible reviewer options on the review routing.</value>
+  </data>
+  <data name="INCIDENT_OWNER_CHECKOUT" xml:space="preserve">
+    <value>You must be an Owner of this Incident</value>
+  </data>
+  <data name="DOCUMENT_CO_EDITOR" xml:space="preserve">
+    <value>Can not check out the form. User not in Co-Editors list.</value>
+  </data>
+  <data name="DOCUMENT_ONLY_LOCK" xml:space="preserve">
+    <value>Invalid Product type, you can only lock Documents</value>
+  </data>
+  <data name="DOCUMENT_STATUS_LOCK" xml:space="preserve">
+    <value>Invalid status for lock.  Must be in Approved or Current status.</value>
+  </data>
+  <data name="DOCUMENT_ALREADY_LOCKED" xml:space="preserve">
+    <value>This document is already checked out by {USER}.  Please either contact them or undo the checkout before proceeding.</value>
+  </data>
+  <data name="DOCUMENT_CHECKIN_NOTES" xml:space="preserve">
+    <value>Check in notes are required for this document type.</value>
+  </data>
+  <data name="UPLOAD_SINGLE_FILE" xml:space="preserve">
+    <value>Please include a single file with your request.</value>
+  </data>
+  <data name="FILE_NOT_FOUND" xml:space="preserve">
+    <value>The file you are looking for could not be found.  Please contact your administrator and try again.</value>
+  </data>
+  <data name="CONTENT_TYPE_NONEXISTANT" xml:space="preserve">
+    <value>Content type does not exist.  Please check the content type name or ID and try again.</value>
+  </data>
+  <data name="MISSING_FOLDER_RIGHTS" xml:space="preserve">
+    <value>You do not have the required rights to access this folder.  Please contact your system administrator for assistance.</value>
+  </data>
+  <data name="DOCUMENT_CODE_EXISTS" xml:space="preserve">
+    <value>Code already exists, each Code must be unique</value>
+  </data>
+  <data name="DOCUMENT_REV_NOT_ADJUSTABLE" xml:space="preserve">
+    <value>The content type for this document does not allow the revision to be adjusted.</value>
+  </data>
+  <data name="ATTRIBUTE_MISSING_REQUIRED" xml:space="preserve">
+    <value>You are missing required attributes.  Please check the list of required attributes and submit values for each.</value>
+  </data>
+  <data name="DOCUMENT_ATTRIBUTES_REQ" xml:space="preserve">
+    <value>Please make sure to include values for ALL required attributes in your request.</value>
+  </data>
+  <data name="VALUE_DATETIME_INVALID" xml:space="preserve">
+    <value>Value must be set to a valid Date/Time value.  </value>
+  </data>
+  <data name="VALUE_INT_INVALID" xml:space="preserve">
+    <value>{PropertyName} is not set to a valid integer value.  Please correct your data and try again.</value>
+  </data>
+  <data name="VALUE_OPTION_INVALID" xml:space="preserve">
+    <value>{PropertyName} is not set to an valid option.  Please correct your data and try again.</value>
+  </data>
+  <data name="VALUE_NUM_MIN" xml:space="preserve">
+    <value>Value must be larger than {MIN}</value>
+  </data>
+  <data name="VALUE_NUM_MAX" xml:space="preserve">
+    <value>Value must be smaller than {MAX}</value>
+  </data>
+  <data name="VALUE_NUM_INT" xml:space="preserve">
+    <value>Value must be an integer (numbers only, no decimals)</value>
+  </data>
+  <data name="VALUE_NUM_DECIMAL" xml:space="preserve">
+    <value>Value must be a decimal (numbers and a decimal place only)</value>
+  </data>
+  <data name="VALUE_MIN_CHAR" xml:space="preserve">
+    <value>Value must have at least {MIN} characters</value>
+  </data>
+  <data name="VALUE_MAX_CHAR" xml:space="preserve">
+    <value>Value can't have more than {MAX} characters</value>
+  </data>
+  <data name="VALUE_LETTERS_ONLY" xml:space="preserve">
+    <value>Value allows letters only (No spaces, punctuation or numbers)</value>
+  </data>
+  <data name="VALUE_NUM_E_MIN" xml:space="preserve">
+    <value>Value must be equal to or larger than {MIN}</value>
+  </data>
+  <data name="VALUE_NUM_E_MAX" xml:space="preserve">
+    <value>Value must be smaller than or equal to {MAX}  </value>
+  </data>
+  <data name="VALUE_ENG_MET" xml:space="preserve">
+    <value>The </value>
+    <comment>Specific to the eng/metric converter form compoentn</comment>
+  </data>
+  <data name="VALUE_BOOL_ONLY" xml:space="preserve">
+    <value>Value must be a boolean (true/false)</value>
+  </data>
+  <data name="ACCOUNT_LOCKED" xml:space="preserve">
+    <value>The specified user account is locked in ENSUR</value>
+  </data>
+  <data name="AD_REJECT" xml:space="preserve">
+    <value>Rejected by Active Directory</value>
+  </data>
+  <data name="ALREADY_LOGGEDIN" xml:space="preserve">
+    <value>The user account is presently logged into ENSUR, but multiple logins are disallowed</value>
+  </data>
+  <data name="INVALID_PASSWORD" xml:space="preserve">
+    <value>Invalid ENSUR password</value>
+  </data>
+  <data name="MAX_LOGIN_TRIES" xml:space="preserve">
+    <value>Exceeded number of invalid login attempts</value>
+  </data>
+  <data name="NOT_ACTIVE" xml:space="preserve">
+    <value>The provided account for the provided username is not active in ENSUR</value>
+  </data>
+  <data name="NO_LOGINS" xml:space="preserve">
+    <value>System logins are not allowed at this time (system is offline)</value>
+  </data>
+  <data name="NO_USER_OR_DOMAIN" xml:space="preserve">
+    <value>User authentication failed: The provided username is not associated with the provided domain in ENSUR.</value>
+  </data>
+  <data name="PASSWORD_EXPIRED" xml:space="preserve">
+    <value>Password has expired</value>
+  </data>
+  <data name="IMPERSONATION" xml:space="preserve">
+    <value>Change was made by user {UserID} impersonating user {ImpersonationID}</value>
+  </data>
+  <data name="SERIALIZATION_ENUM" xml:space="preserve">
+    <value>This paramater accepts the following values {VALUES}</value>
+  </data>
+  <data name="SERIALIZATION_ERROR" xml:space="preserve">
+    <value>There was an error parsing the value for parameter {PARAMETER}.  Please check your JSON structure and values.  Make sure text (strings) or dates are surrounded by quotes and numbers or booleans are not.  {MESSAGE}</value>
+  </data>
+  <data name="FOLDER_PRODUCT_TYPE" xml:space="preserve">
+    <value>Folder does not allow this type of product.  Please specify a different folder.</value>
+  </data>
+  <data name="MULTI_VALUE_COMPONENT" xml:space="preserve">
+    <value>This is a multi-value component, please use the multi-value field.</value>
+  </data>
+  <data name="SINGLE_VALUE_COMPONENT" xml:space="preserve">
+    <value>This is a single-value component, please use the single-value field.</value>
+  </data>
+  <data name="LINK_CIRCULAR_REFERENCE" xml:space="preserve">
+    <value>This action would create a circular reference.</value>
+  </data>
+  <data name="DOCUMENT_FOLDER_REMOVE" xml:space="preserve">
+    <value>Content deleted from folder {FolderName}</value>
+  </data>
+  <data name="DOCUMENT_INVALID_STATUS" xml:space="preserve">
+    <value>The document is in a status that does not allow this action.  </value>
+  </data>
+  <data name="DOCUMENT_INVALID_LINK" xml:space="preserve">
+    <value>Cannot link to obselete content.  Must be in Current or earlier status.</value>
+  </data>
+  <data name="DOCUMENT_MUST_CHECKEDOUT" xml:space="preserve">
+    <value>Document must be checked out</value>
+  </data>
+  <data name="LINK_CHILD_CO" xml:space="preserve">
+    <value>Error, child already linked to a CO</value>
+  </data>
+  <data name="LINK_CHILD_DEP_STAT" xml:space="preserve">
+    <value>Error, Child cannot be added until all DEP-STAT parents are members of the CO</value>
+  </data>
+  <data name="LINK_CO_TO_CO" xml:space="preserve">
+    <value>Error, you cannot link a CO to another CO</value>
+  </data>
+  <data name="LINK_DEP_DYNAMIC_NOT_CURRENT" xml:space="preserve">
+    <value>Error, Child cannot be added until all DEP-DYNAMIC parents that are not yet Current are represented in the CO</value>
+  </data>
+  <data name="LINK_OBSELETE" xml:space="preserve">
+    <value>Error, child cannot be obsolete</value>
+  </data>
+  <data name="LINK_CODE_EXISTS" xml:space="preserve">
+    <value>Code already linked to parent document</value>
+  </data>
+  <data name="LINK_MUST_BE_STATUS" xml:space="preserve">
+    <value>Document must be in {STATUS} status.</value>
+  </data>
+  <data name="LINK_TEMPLATE_PRODUCT" xml:space="preserve">
+    <value>Parent and child documents must be of the same Product Type</value>
+  </data>
+  <data name="LINK_MASTER_FORM" xml:space="preserve">
+    <value>Masters require parent and child to both be forms.</value>
+  </data>
+  <data name="LINK_DELETE_ACTIVE" xml:space="preserve">
+    <value>You cannot delete an active dependent link</value>
+  </data>
+  <data name="LINK_CO_DELETE" xml:space="preserve">
+    <value>To delete a change order link beyond In-Review status, the CO must be in Approved status and locked.</value>
+  </data>
+  <data name="LINK_DOCUMENT_CHECKOUT" xml:space="preserve">
+    <value>To delete a dependent link, you must checkout the Parent document.</value>
+  </data>
+  <data name="PICKLIST_SYSTEM" xml:space="preserve">
+    <value>This is a system picklist and cannot be modified or deleted.</value>
+  </data>
+  <data name="PW_ADMIN_PREVENT" xml:space="preserve">
+    <value>Admin password is configured to not be changable.</value>
+  </data>
+  <data name="USER_SUPER_SUB" xml:space="preserve">
+    <value>User must be a supervisor to have subordinates</value>
+  </data>
+  <data name="USER_SUBS_INVALID" xml:space="preserve">
+    <value>The following users are not active supervisors in the system : {users}</value>
+  </data>
+  <data name="NOTFIFY_NOTIFY_INACTIVE" xml:space="preserve">
+    <value>Notification is inactive</value>
+  </data>
+  <data name="NOTIFY_DATE_DRIVEN" xml:space="preserve">
+    <value>Notification Date Driven: {DATE_DRIVEN}</value>
+  </data>
+  <data name="NOTIFY_EMAIL_INACTIVE" xml:space="preserve">
+    <value>Email is inactive.</value>
+  </data>
+  <data name="NOTIFY_PROCESSING" xml:space="preserve">
+    <value>Processing notification:  {EVENT_ID} {DESCRIPTION}</value>
+  </data>
+  <data name="NOTIFY_SESSION_NOTIFY" xml:space="preserve">
+    <value>Processing as a session notification</value>
+  </data>
+  <data name="NOTIFY_TYPE" xml:space="preserve">
+    <value>Notification type: {NTYPE}</value>
+  </data>
+  <data name="NOTIFY_AI_DESC" xml:space="preserve">
+    <value>AI Description: {DESCRIPTION}</value>
+  </data>
+  <data name="NOTIFY_AI_NOTE" xml:space="preserve">
+    <value>Processing as an Action Item Notification</value>
+  </data>
+  <data name="NOTIFY_DOC_NOTE" xml:space="preserve">
+    <value>Processing as a Document Notification.</value>
+  </data>
+  <data name="NOTIFY_FOUND_USERS" xml:space="preserve">
+    <value>Found {USERCOUNT} users</value>
+  </data>
+  <data name="NOTIFY_HTML_BODY" xml:space="preserve">
+    <value>Using HTML Body</value>
+  </data>
+  <data name="NOTIFY_TEXT_BODY" xml:space="preserve">
+    <value>Using Plain Text Body</value>
+  </data>
+  <data name="NOTIFY_ROUTING_NOTE" xml:space="preserve">
+    <value>Processing as a routing notification</value>
+  </data>
+  <data name="NOTIFY_USER_NOTE" xml:space="preserve">
+    <value>Processing as a user notification</value>
+  </data>
+  <data name="API_LICENSE_FULL" xml:space="preserve">
+    <value>All available user seats are taken.  Please wait for one of the other users to finish or expand the number of licenses available</value>
+  </data>
+  <data name="API_NO_VALID_SITE" xml:space="preserve">
+    <value>No valid site.  You must have a Site created in Ensur with the name ENSURAPI and a valid license key.</value>
+  </data>
+  <data name="LICENSE_EXPIRED" xml:space="preserve">
+    <value>Your license has expired.  Please contact Ensur support at support@docxellent.com</value>
+    <comment>0</comment>
+  </data>
+  <data name="NO_AVAILABLE_LICENSE" xml:space="preserve">
+    <value>There are no licenses available to use.  Please contact your administrator to be put on an appropriate license.</value>
+  </data>
+  <data name="API_EDITOR" xml:space="preserve">
+    <value>The user must have an editor role to use the API</value>
+  </data>
+  <data name="DOCUMENT_NO_FILE" xml:space="preserve">
+    <value>This content file is not available in its current status.</value>
+  </data>
+  <data name="HYPERLINK_NOT_ENABLED" xml:space="preserve">
+    <value>Create hyperlink is not currently enabled.  Please contact your Ensur administrator to enable it.</value>
+  </data>
+  <data name="DOC_INVALID_OVERLAY" xml:space="preserve">
+    <value>Invalid overlay.  To use an overlay with the API there must be a controlled print overlay configured.</value>
+  </data>
+  <data name="DOCUMENT_OVERLAY_PROMPTS" xml:space="preserve">
+    <value>This overlay has required prompts that must be provided.  For more details check the /document/{ID}/Prompts endpoint.</value>
+  </data>
+  <data name="DOCUMENT_PROMPT_INVALID" xml:space="preserve">
+    <value>The overlay for this document has no prompt with this ID.  Please re-check the IDs you are passing.  (Note: Entry IDs change when an overlay is revised)</value>
+  </data>
+  <data name="ORIGINAL_ONLY" xml:space="preserve">
+    <value>Only the original file can be downloaded</value>
+  </data>
+  <data name="PUBLISHED_ONLY" xml:space="preserve">
+    <value>Only the published file can be downloaded</value>
+  </data>
+  <data name="COMPONENT_GRID" xml:space="preserve">
+    <value>The specified component is part of a grid and can't be returned in this call.  See the /Forms/{ID}/Grid call and the API documentation for further details.</value>
+  </data>
+  <data name="FRM_FORMULA_INVALID" xml:space="preserve">
+    <value>Formula is invalid and not able to be evaluated. </value>
+  </data>
+  <data name="VALUE_INVALID_COOWNERS" xml:space="preserve">
+    <value>All co-owners must be Active, be an Approver or Editor, and must have Content-Owner rights to the destination folder.  The following user(s) are invalid {USERS}.</value>
+  </data>
+  <data name="DOCUMENT_DRAFT_STATUS" xml:space="preserve">
+    <value>Document must be in draft status.</value>
+  </data>
+  <data name="FILE_NOT_PROVIDED" xml:space="preserve">
+    <value>No file was included with your request.  Please check your request and try again.</value>
+  </data>
+  <data name="FORM_TYPE_MATCH" xml:space="preserve">
+    <value>Form type must match this document's product type</value>
+  </data>
+  <data name="NOT_SUPPORTED" xml:space="preserve">
+    <value>This value is currently unsupported.  Please review the documentation and change the value.</value>
+  </data>
+  <data name="INVALID_CHARACTERS" xml:space="preserve">
+    <value>Your value has invalid characters.  {CHARACTERS} Please check your value and try again.</value>
+  </data>
+  <data name="INVALID_FORMAT" xml:space="preserve">
+    <value>Your valid is not in the expected format.  Expected format is  {EXPECTED_FORMAT}</value>
+  </data>
+  <data name="INVALID_MEDIA" xml:space="preserve">
+    <value>The media you specified does not have a file associated with it.  (Link or Web URL)</value>
+  </data>
+  <data name="TEMP_CONTENT_TYPE" xml:space="preserve">
+    <value>The content type you have chosen is not supported.  Only Windows Application / Form based content types are allowed.</value>
+  </data>
+  <data name="FILE_MUST_PDF" xml:space="preserve">
+    <value>This document has an overlay and all published content must be in PDF format.</value>
+  </data>
+  <data name="LINK_EXISTS" xml:space="preserve">
+    <value>A link between these documents already exists</value>
+  </data>
+  <data name="INVALID_MUST_CONTAIN" xml:space="preserve">
+    <value>This value is invalid.  It must contain the following character(s) {CHARACTERS}</value>
+  </data>
+  <data name="NO_UPLOAD" xml:space="preserve">
+    <value>Uploading files are not allowed to this document.</value>
+  </data>
+  <data name="UPLOAD_ONLY_PUBLISHED" xml:space="preserve">
+    <value>Only a published file can be added to this document.</value>
+  </data>
+  <data name="DOCUMENT_INVALID_FORMAT" xml:space="preserve">
+    <value>The document must be in format {FORMAT} to complete this operation.</value>
+  </data>
+  <data name="DOCUMENT_MISSING_VIEW_RIGHTS" xml:space="preserve">
+    <value>You are missing the view rights for document code {CODE}</value>
+  </data>
+  <data name="INVALID_VALUE_TYPE" xml:space="preserve">
+    <value>You have specified an invalid value for this field.  Expecting type {TYPE}.</value>
+  </data>
+  <data name="ATTRIBUTE_NOT_FOUND" xml:space="preserve">
+    <value>An attribute of the specified type and ID was not found on this document</value>
+  </data>
+  <data name="COMPONENT_ID_OR_NAME" xml:space="preserve">
+    <value>Invalid component name or ID.  Please make sure you have the correct combination of content ID and either component name or ID.</value>
+  </data>
+  <data name="NO_SAVING_ALLOWED" xml:space="preserve">
+    <value>This field does not allow saving.</value>
+  </data>
+  <data name="RESULT_EXCEEDED_MAX" xml:space="preserve">
+    <value>The result exceeded the maximum value of {MAX} digits.</value>
+  </data>
+  <data name="VALUES_JSON" xml:space="preserve">
+    <value>You must include the values property in your JSON structure. If you are setting a null value, include the values property with an empty array.</value>
+  </data>
+  <data name="VALUE_JSON" xml:space="preserve">
+    <value>You must include the value property in your JSON structure. If you are setting a null value, include the value property with a value of null.</value>
+  </data>
+  <data name="COMPONENT_NOT_SUPPORTED" xml:space="preserve">
+    <value>The specified component is not currently supported or does not allow saving.  Please exclude this from your data.</value>
+  </data>
+  <data name="COMPONENT_READ_ONLY" xml:space="preserve">
+    <value>This component is read only.  Saving is not allowed.</value>
+  </data>
+  <data name="COMPONENT_READ_ONLY_MASTER" xml:space="preserve">
+    <value>This component is read only because it is linked to a master.  Saving is not allowed.</value>
+  </data>
+  <data name="ROW_DELETE_MASTER" xml:space="preserve">
+    <value>This row cannot be deleted because it is linked to a master row.</value>
+  </data>
+  <data name="CONVERSION_ERROR_RANGE" xml:space="preserve">
+    <value>The conversion resulted in a value ({VAL}) that was outside of the range of values ({RANGE}).</value>
+  </data>
+  <data name="VALUE_RESULT_MAX" xml:space="preserve">
+    <value>The result exceeded the max length of {MAX} characters.  </value>
+  </data>
+</root>

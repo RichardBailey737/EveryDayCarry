@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.github
+/.vs/EveryDayCarry
+/packages
+/Core.Extensibility.Plugins/bin
+/Core.Extensibility.Plugins/obj
+/TriggerBuilder/bin/Debug
+/TriggerBuilder/obj
+/CoreUtilities/bin
+/CoreUtilities/obj
