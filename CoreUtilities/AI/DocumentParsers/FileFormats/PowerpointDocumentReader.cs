@@ -81,7 +81,9 @@ namespace Ensur.Core.Utilities.DocumentReaders
 
         public DocumentMetadata GetCurrentMetadata()
         {
-            if (_currentIndex >= _slideContents.Count)
+            // Describe the text box most recently returned by ReadNext (as the other readers do).
+            int index = Math.Min(Math.Max(_currentIndex - 1, 0), _slideContents.Count - 1);
+            if (index < 0)
             {
                 return new DocumentMetadata
                 {
@@ -91,7 +93,7 @@ namespace Ensur.Core.Utilities.DocumentReaders
                 };
             }
 
-            var currentContent = _slideContents[_currentIndex];
+            var currentContent = _slideContents[index];
             return new DocumentMetadata
             {
                 SectionNumber = currentContent.SlideNumber,

@@ -9,6 +9,7 @@ namespace Ensur.Core.Utilities.Database
 {
     public partial class PocoDB : PetaPoco.Database
     {
+#if NETFRAMEWORK
         public PocoDB()
             : base(Settings.ConnectionString.Name)
         {
@@ -20,6 +21,27 @@ namespace Ensur.Core.Utilities.Database
         {
             CommonConstruct();
         }
+#else
+        // Modern .NET has no <connectionStrings> section to look names up in, so the host must
+        // supply the full SQL Server connection string (Settings.ConnectionString.Value).
+        public PocoDB()
+            : this(Settings.ConnectionString.Value)
+        {
+        }
+
+        public PocoDB(string connectionString)
+            : base(RequireConnectionString(connectionString), Microsoft.Data.SqlClient.SqlClientFactory.Instance)
+        {
+            CommonConstruct();
+        }
+
+        private static string RequireConnectionString(string connectionString)
+        {
+            if (String.IsNullOrWhiteSpace(connectionString))
+                throw new InvalidOperationException("Settings.ConnectionString.Value must be set to a SQL Server connection string before using PocoDB.");
+            return connectionString;
+        }
+#endif
 
         partial void CommonConstruct();
 

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -14,7 +13,11 @@ using System.Management;
 using NLog.Internal;
 using NLog;
 using System.Dynamic;
+#if NETFRAMEWORK
 using System.Data.SqlClient;
+#else
+using Microsoft.Data.SqlClient;
+#endif
 using DocumentFormat.OpenXml.Spreadsheet;
 using PetaPoco;
 
@@ -619,7 +622,7 @@ namespace Ensur.Core.Utilities.Database
             if (memoryValues != null)
             {
                 var percent = ((memoryValues.TotalVisibleMemorySize - memoryValues.FreePhysicalMemory) / memoryValues.TotalVisibleMemorySize) * 100;
-                if (percent > (double.Parse(System.Configuration.ConfigurationManager.AppSettings["MaxMemoryCap"] ?? "99")))
+                if (percent > (double.Parse(Settings.AppSettings.Get("MaxMemoryCap") ?? "99")))
                 {
                     Logger.Error($"Memory cap reached {percent}%. Cannot cache more items");
                     return true;

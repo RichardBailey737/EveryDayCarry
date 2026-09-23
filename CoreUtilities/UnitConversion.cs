@@ -1,7 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Spreadsheet;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Ensur.Core.Utilities.Properties;
-using Microsoft.SqlServer.Server;
 using NLog;
 using System;
 using System.Collections.Generic;

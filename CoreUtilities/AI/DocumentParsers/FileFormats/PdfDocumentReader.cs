@@ -1,11 +1,12 @@
-﻿using Ensur.Core.Utilities.DocumentReaders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using UglyToad.PdfPig;
 using UglyToad.PdfPig.Content;
+using UglyToad.PdfPig.DocumentLayoutAnalysis.TextExtractor;
 
-namespace EnsurFindExperimental.DocumentReaders
+namespace Ensur.Core.Utilities.DocumentReaders
 {
     public class PdfDocumentReader : IDocumentReader
     {
@@ -27,8 +28,7 @@ namespace EnsurFindExperimental.DocumentReaders
 
             foreach (var page in _document.GetPages())
             {
-                // Get text from the page
-                string pageText = page.Text;
+                string pageText = ExtractPageText(page);
 
                 if (!string.IsNullOrWhiteSpace(pageText))
                 {
@@ -57,9 +57,40 @@ namespace EnsurFindExperimental.DocumentReaders
             _charactersProcessed = 0;
         }
 
+        /// <summary>
+        /// Total number of pages in the PDF, including pages without extractable text.
+        /// </summary>
+        public int PageCount => _document.NumberOfPages;
+
+        // A letter, a hyphen at the end of a line, then a lower-case letter on the next line:
+        // a word split across lines by typesetting ("con-" + "ditions" becomes "conditions").
+        private static readonly Regex LineBreakHyphen = new Regex(@"(\p{L})-[ \t]*\r?\n[ \t]*(\p{Ll})", RegexOptions.Compiled);
+
+        /// <summary>
+        /// Extracts page text in reading order. <see cref="Page.Text"/> concatenates letters in
+        /// content-stream order without line breaks, which merges columns and loses line structure.
+        /// </summary>
+        private static string ExtractPageText(Page page)
+        {
+            string text;
+            try
+            {
+                text = ContentOrderTextExtractor.GetText(page);
+            }
+            catch (Exception)
+            {
+                text = page.Text;
+            }
+
+            return String.IsNullOrEmpty(text) ? text : LineBreakHyphen.Replace(text, "$1$2");
+        }
+
         public DocumentMetadata GetCurrentMetadata()
         {
-            if (_currentIndex >= _pageContents.Count)
+            // Describe the paragraph most recently returned by ReadNext (as the other readers do),
+            // not the next unread one, so chunk page ranges are not shifted by a page.
+            int index = Math.Min(Math.Max(_currentIndex - 1, 0), _pageContents.Count - 1);
+            if (index < 0)
             {
                 return new DocumentMetadata
                 {
@@ -69,7 +100,7 @@ namespace EnsurFindExperimental.DocumentReaders
                 };
             }
 
-            var currentContent = _pageContents[_currentIndex];
+            var currentContent = _pageContents[index];
             return new DocumentMetadata
             {
                 SectionNumber = currentContent.PageNumber,

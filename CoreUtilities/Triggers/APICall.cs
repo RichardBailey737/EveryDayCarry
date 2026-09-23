@@ -74,6 +74,12 @@ namespace Ensur.Core.Utilities.Triggers
         public string CallMethod { get; set; }
 
         /// <summary>
+        /// Optional request timeout in seconds. Zero or less keeps the HTTP stack's default (100 seconds),
+        /// which is too short for long LLM generations on local hardware.
+        /// </summary>
+        public int TimeoutSeconds { get; set; }
+
+        /// <summary>
         /// Executes the API call configured by the object.  
         /// </summary>
         /// <param name="Data"></param>
@@ -91,6 +97,11 @@ namespace Ensur.Core.Utilities.Triggers
             Dictionary<string, string> resultData = new Dictionary<string, string>();
 
             var request = new RestRequest("", (Method)Enum.Parse(typeof(Method), CallMethod));
+            if (TimeoutSeconds > 0)
+            {
+                client.Timeout = TimeoutSeconds * 1000;
+                request.Timeout = TimeoutSeconds * 1000;
+            }
 
             if (ContentType.ToUpper() == "XML")
             {

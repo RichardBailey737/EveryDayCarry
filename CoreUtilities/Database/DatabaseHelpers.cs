@@ -9,7 +9,11 @@ using PetaPoco.Core;
 using System;
 using System.Collections.Generic;
 using System.Data;
+#if NETFRAMEWORK
 using System.Data.SqlClient;
+#else
+using Microsoft.Data.SqlClient;
+#endif
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;

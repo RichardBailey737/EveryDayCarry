@@ -48,7 +48,7 @@ namespace Ensur.Core.Utilities.Settings
         /// <summary>
         /// Number of hours that items remain in the cache (a sliding cache) before expiring
         /// </summary>
-        public static int HoursUntilExpiration => int.Parse(ConfigurationManager.AppSettings["CacheExpiration"] ?? "3");
+        public static int HoursUntilExpiration => int.Parse(AppSettings.Get("CacheExpiration") ?? "3");
 
     }
 }

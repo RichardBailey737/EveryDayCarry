@@ -1,182 +1,90 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4AE534B4-60CD-464D-A2A2-CDA240190C66}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <!-- One codebase for existing .NET Framework consumers and modern .NET hosts. -->
+    <TargetFrameworks>net48;net10.0</TargetFrameworks>
     <RootNamespace>Ensur.Core.Utilities</RootNamespace>
     <AssemblyName>Ensur.Core.Utilities</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
-    <TargetFrameworkProfile />
+    <LangVersion>latest</LangVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- Missing XML comments, obsolete serialization constructors and Windows-only API analyzers. -->
+    <NoWarn>$(NoWarn);CS1591;CS1573;CS1572;CS1574;CS1587;SYSLIB0014;SYSLIB0051;CA1416</NoWarn>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Ensur.Core.Utilities.xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Ensur.Core.Utilities.xml</DocumentationFile>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="CacheManager.Core, Version=1.2.0.0, Culture=neutral, PublicKeyToken=5b450b4fb65c4cdb, processorArchitecture=MSIL">
-      <HintPath>..\packages\CacheManager.Core.1.2.0\lib\net45\CacheManager.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="CacheManager.SystemRuntimeCaching, Version=1.2.0.0, Culture=neutral, PublicKeyToken=5b450b4fb65c4cdb, processorArchitecture=MSIL">
-      <HintPath>..\packages\CacheManager.SystemRuntimeCaching.1.2.0\lib\net45\CacheManager.SystemRuntimeCaching.dll</HintPath>
-    </Reference>
-    <Reference Include="DocumentFormat.OpenXml, Version=2.16.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
-      <HintPath>..\packages\DocumentFormat.OpenXml.2.16.0\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.7.10\lib\net45\NLog.dll</HintPath>
-    </Reference>
-    <Reference Include="PetaPoco, Version=6.0.532.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PetaPoco.Compiled.6.0.532\lib\net45\PetaPoco.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RestSharp, Version=106.12.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.106.12.0\lib\net452\RestSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="StringTokenFormatter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=3b4f084a64c30afd, processorArchitecture=MSIL">
-      <HintPath>..\packages\StringTokenFormatter.4.1.0\lib\netstandard2.0\StringTokenFormatter.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
+    <!-- Present on disk but never compiled by the original project. -->
+    <Compile Remove="Settings\ApplicationSettings.cs" />
+    <None Include="Settings\ApplicationSettings.cs" />
+  </ItemGroup>
+
+  <!-- WebForms user-control plugins only exist on .NET Framework. -->
+  <ItemGroup Condition="'$(TargetFramework)' != 'net48'">
+    <Compile Remove="UserControlPlugins.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.16.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="NLog" Version="4.7.10" />
+    <PackageReference Include="PdfPig" Version="0.1.11" />
+    <PackageReference Include="PetaPoco.Compiled" Version="6.0.532" />
+    <PackageReference Include="RestSharp" Version="106.12.0" />
+    <PackageReference Include="StringTokenFormatter" Version="4.1.0" />
+    <PackageReference Include="UnitsNet" Version="4.109.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+    <PackageReference Include="CacheManager.Core" Version="1.2.0" />
+    <PackageReference Include="CacheManager.SystemRuntimeCaching" Version="1.2.0" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Management" />
-    <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-    <Reference Include="UnitsNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=f8601875a1f041da, processorArchitecture=MSIL">
-      <HintPath>..\packages\UnitsNet.4.109.0\lib\net40\UnitsNet.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' != 'net48'">
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.1" />
+    <PackageReference Include="System.ComponentModel.Composition" Version="10.0.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.0" />
+    <PackageReference Include="System.Management" Version="10.0.0" />
+    <PackageReference Include="System.Runtime.Caching" Version="10.0.0" />
+  </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="AI\DocumentParsers\DocumentChunkReader.cs" />
-    <Compile Include="AI\DocumentParsers\DocumentReaderFactory.cs" />
-    <Compile Include="AI\DocumentParsers\FileFormats\ExcelDocumentReader.cs" />
-    <Compile Include="AI\DocumentParsers\FileFormats\PdfDocumentReader.cs" />
-    <Compile Include="AI\DocumentParsers\FileFormats\PowerpointDocumentReader.cs" />
-    <Compile Include="AI\DocumentParsers\FileFormats\RichTextFileReader.cs" />
-    <Compile Include="AI\DocumentParsers\FileFormats\TextFileReader.cs" />
-    <Compile Include="AI\DocumentParsers\FileFormats\WordDocumentReader.cs" />
-    <Compile Include="AI\DocumentParsers\IDocumentReader.cs" />
-    <Compile Include="AI\EmbeddingGenerator.cs" />
-    <Compile Include="AI\NaturalLanguageRagProcessor.cs" />
-    <Compile Include="AI\NaturalLanguageSearchProcessor.cs" />
-    <Compile Include="Classes\PocoObjects.cs" />
-    <Compile Include="Database\DatabaseHelpers.cs" />
-    <Compile Include="Database\LocalDBCache.cs" />
-    <Compile Include="Database\PocoDB.cs" />
-    <Compile Include="ExcelDocuments.cs" />
-    <Compile Include="FileUtilities.cs" />
-    <Compile Include="Helpers\LinqHelpers.cs" />
-    <Compile Include="Helpers\ListHelpers.cs" />
-    <Compile Include="Helpers\LogHelpers.cs" />
-    <Compile Include="Helpers\ObjectHelpers.cs" />
-    <Compile Include="Helpers\ObjectToDictionaryHelper.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
+    <ProjectReference Include="..\Core.Extensibility.Plugins\Core.Extensibility.Plugins.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Resources.fr-FR.Designer.cs">
+    <Compile Update="Properties\Resources.fr-FR.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.fr-FR.resx</DependentUpon>
     </Compile>
-    <Compile Include="Settings\Cache.cs" />
-    <Compile Include="Settings\ConnectionString.cs" />
-    <Compile Include="Settings\UserSettings.cs" />
-    <Compile Include="Triggers\APICall.cs" />
-    <Compile Include="Triggers\ExpressionParser.cs" />
-    <Compile Include="UnitConversion.cs" />
-    <Compile Include="UserControlPlugins.cs" />
-    <Compile Include="UserError.cs" />
-    <None Include="app.config" />
-    <None Include="Ensur.Core.Utilities.nuspec" />
-    <Compile Include="Settings\Culture.cs" />
-    <Compile Include="Settings\LogLevel.cs" />
-    <Compile Include="Settings\Triggers.cs" />
-    <Compile Include="StringTokenFormatter.cs" />
-    <Compile Include="Triggers\PluginCaller.cs" />
-    <Compile Include="Triggers\Triggers.cs" />
-    <Compile Include="Triggers\TriggerTypes.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.fr-FR.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.fr-FR.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Resources.fr-FR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.fr-FR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core.Extensibility.Plugins\Core.Extensibility.Plugins.csproj">
-      <Project>{a0edda9a-e224-4078-8ee8-7ace10f5e007}</Project>
-      <Name>Core.Extensibility.Plugins</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
-  <Import Project="..\packages\Microsoft.NETFramework.ReferenceAssemblies.net461.1.0.2\build\Microsoft.NETFramework.ReferenceAssemblies.net461.targets" Condition="Exists('..\packages\Microsoft.NETFramework.ReferenceAssemblies.net461.1.0.2\build\Microsoft.NETFramework.ReferenceAssemblies.net461.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.NETFramework.ReferenceAssemblies.net461.1.0.2\build\Microsoft.NETFramework.ReferenceAssemblies.net461.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NETFramework.ReferenceAssemblies.net461.1.0.2\build\Microsoft.NETFramework.ReferenceAssemblies.net461.targets'))" />
-  </Target>
+
 </Project>

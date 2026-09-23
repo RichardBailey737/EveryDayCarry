@@ -1,19 +1,18 @@
 using Ensur.Core.Utilities.Classes;
-using Ensur.Core.Utilities.Database;
+using Ensur.Core.Utilities.Settings;
 using Ensur.Core.Utilities.Triggers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using static Ensur.Core.Utilities.Triggers.Triggers;
 
 namespace Ensur.Core.Utilities.AI.Searching
 {
     /// <summary>
-    /// Generates vector embeddings by executing a manually configured trigger sequence from
-    /// <c>DCS_TRIGGER_CALL</c>.
+    /// Generates vector embeddings by executing a configured trigger sequence loaded from
+    /// <see cref="TriggerSequenceStore.Current"/> (the <c>DCS_TRIGGER_CALL</c> table or a JSON file).
     /// </summary>
     /// <remarks>
     /// <para>
@@ -21,7 +20,7 @@ namespace Ensur.Core.Utilities.AI.Searching
     /// loads the trigger sequence named <c>EMBEDDINGS</c>, adds AppSettings values to the
     /// trigger token dictionary, and executes the sequence through
     /// <see cref="Triggers.TriggerSequence"/>. The API provider and model therefore remain
-    /// database-configurable.
+    /// configuration, never code.
     /// </para>
     /// <para>
     /// The supplied Ollama configuration uses the modern <c>/api/embed</c> endpoint. Its
@@ -65,11 +64,6 @@ namespace Ensur.Core.Utilities.AI.Searching
         /// Preferred name assigned to the API result selected from <c>$.embeddings</c>.
         /// </summary>
         public const string PreferredResultKey = "EMBEDDINGS";
-
-        /// <summary>
-        /// Prefix for the SessionCache key used to load a configured trigger sequence.
-        /// </summary>
-        private const string TriggerCacheKeyPrefix = "DCS_TRIGGER_CALL_";
 
         #endregion
 
@@ -225,7 +219,7 @@ namespace Ensur.Core.Utilities.AI.Searching
         /// </summary>
         private static void EnsureEmbeddingUrlConfigured()
         {
-            string url = ConfigurationManager.AppSettings[AppSettingsEmbeddingsUrlKey];
+            string url = AppSettings.Get(AppSettingsEmbeddingsUrlKey);
             if (String.IsNullOrWhiteSpace(url))
             {
                 throw new EmbeddingGenerationException(
@@ -236,45 +230,18 @@ namespace Ensur.Core.Utilities.AI.Searching
         }
 
         /// <summary>
-        /// Loads and deserializes the manually configured trigger sequence.
+        /// Loads the configured trigger sequence from <see cref="TriggerSequenceStore.Current"/>.
         /// </summary>
         private List<DCS_TRIGGER_EVENT> LoadTriggerSteps()
         {
             try
             {
-                string sequenceJson = SessionCache.Instance.BySQL<string>(
-                    "SELECT CALL_CODE FROM DCS_TRIGGER_CALL WHERE CALL_NAME = @0",
-                    TriggerCacheKeyPrefix + _triggerCallName.ToUpperInvariant(),
-                    _triggerCallName);
-
-                if (String.IsNullOrWhiteSpace(sequenceJson))
-                {
-                    throw new EmbeddingGenerationException(
-                        "DCS_TRIGGER_CALL does not contain a CALL_CODE value for CALL_NAME '" +
-                        _triggerCallName + "'.");
-                }
-
-                List<DCS_TRIGGER_EVENT> steps =
-                    JsonConvert.DeserializeObject<List<DCS_TRIGGER_EVENT>>(sequenceJson);
-
-                if (steps == null || steps.Count == 0)
-                {
-                    throw new EmbeddingGenerationException(
-                        "The '" + _triggerCallName +
-                        "' DCS_TRIGGER_CALL value contains no trigger steps.");
-                }
-
-                return steps;
-            }
-            catch (EmbeddingGenerationException)
-            {
-                throw;
+                return TriggerSequenceStore.Current.GetSequence(_triggerCallName);
             }
             catch (Exception ex)
             {
                 throw new EmbeddingGenerationException(
-                    "Unable to load the '" + _triggerCallName +
-                    "' trigger sequence from DCS_TRIGGER_CALL.",
+                    "Unable to load the '" + _triggerCallName + "' trigger sequence.",
                     ex);
             }
         }
@@ -303,8 +270,7 @@ namespace Ensur.Core.Utilities.AI.Searching
 
             // AppSettings become trigger tokens such as {EMBEDDINGSURL}. Assignment rather
             // than Add avoids a duplicate-key exception if a caller token is added later.
-            foreach (string key in ConfigurationManager.AppSettings.AllKeys)
-                data[key] = ConfigurationManager.AppSettings[key];
+            AppSettings.CopyTo(data);
 
             return data;
         }

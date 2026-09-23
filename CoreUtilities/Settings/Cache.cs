@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+#if NETFRAMEWORK
 using System.Web;
+#endif
 
 namespace Ensur.Core.Utilities.Settings
 {
@@ -19,7 +21,15 @@ namespace Ensur.Core.Utilities.Settings
         {
             get
             {
-
+#if !NETFRAMEWORK
+                // There is no static HttpContext on modern .NET; hosts can supply a per-request id.
+                if (GetSessionID != null)
+                {
+                    string hostSessionId = GetSessionID();
+                    if (!string.IsNullOrEmpty(hostSessionId)) return hostSessionId;
+                }
+                return "1";
+#else
                 string sessionid = HttpContext.Current?.Items["SESSIONID"]?.ToString();
 
                 if (!string.IsNullOrEmpty(sessionid))
@@ -50,6 +60,7 @@ namespace Ensur.Core.Utilities.Settings
                 //}
 
                 return "1";
+#endif
             }
         }
 
