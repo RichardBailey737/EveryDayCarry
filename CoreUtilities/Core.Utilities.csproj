@@ -93,6 +93,15 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AI\DocumentParsers\DocumentChunkReader.cs" />
+    <Compile Include="AI\DocumentParsers\DocumentReaderFactory.cs" />
+    <Compile Include="AI\DocumentParsers\FileFormats\ExcelDocumentReader.cs" />
+    <Compile Include="AI\DocumentParsers\FileFormats\PdfDocumentReader.cs" />
+    <Compile Include="AI\DocumentParsers\FileFormats\PowerpointDocumentReader.cs" />
+    <Compile Include="AI\DocumentParsers\FileFormats\RichTextFileReader.cs" />
+    <Compile Include="AI\DocumentParsers\FileFormats\TextFileReader.cs" />
+    <Compile Include="AI\DocumentParsers\FileFormats\WordDocumentReader.cs" />
+    <Compile Include="AI\DocumentParsers\IDocumentReader.cs" />
     <Compile Include="AI\EmbeddingGenerator.cs" />
     <Compile Include="AI\NaturalLanguageRagProcessor.cs" />
     <Compile Include="AI\NaturalLanguageSearchProcessor.cs" />
