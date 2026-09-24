@@ -35,7 +35,12 @@ In a web application you can create an [IIS handler](https://go.microsoft.com/?l
 ```VB.Net
  Public Sub SetRepositoryEventHandler(ByVal source As Object, ByVal e As EventArgs) Handles _context.AcquireRequestState
      AddHandler Ensur.Core.Utilities.Settings.ConnectionString.GetRepository, AddressOf SetRepository
+     addhandler ensur.core.utilities.settings.Cache.GetSessionID, addressof GetSessionID
  End Sub
+
+function GetSessionID()  as string
+    return Httpcontext.current.Session.SessionID
+End function
 
 Function SetRepository() As String
     If Not HttpContext.Current Is Nothing Then
@@ -50,7 +55,9 @@ Function SetRepository() As String
 End Function
 ```
 
-In this example I set the connection string according to a session variable set during login.  
+In this example I set the connection string according to a session variable set during login.  The SessionID is used to identify which user is executing the queries.  On a website, this is mandatory otherwise you will get conflicts with other users.   In a desktop app it's all running under the same user anyway.
+
+The final step is optional.  The caching mechanism stores query results.  Results are stored for 3 minutes or until Session.instance.EndSession() is called.  It's recommended on a website to call on page unload.
 
 Once configured, the connection string doesn't have to be specified again.  All database queries are started through the SessionCache singleton:
 
@@ -60,7 +67,15 @@ Once configured, the connection string doesn't have to be specified again.  All 
  var objList = SessionCache.Instance.BySQLList<CustomPoco>("select * from DCS_DOC  where CREATED_DATE > @0", "DOCS2026", '1/1/2026');
 ```
 
-The first returns a strongly typed boolean based of the specified parameterized query.  If the 
+The first returns a strongly typed boolean based of the specified parameterized query.  If a query with the same cache name "CACHENAME" has been executed since this session, it returns the results in memory.  The second returns a custom object using PetaPoco to populate the object based on the property names (or PetaPoco Column attribute).  The third returns a list of objects (List<CustomPoco>).
+
+Cached objects are stored by Object and cache name.  So a boolean with the cache named "CACHE1" and a string with the same name will not overlap.
+
+The library offers a set of cache manipulation functions to manually load multiple, clear, set, and retrieve values.  It allows querying for single values, single objects, single value lists, object lists or execution of stored procedures.  All functions provide a way to pass a PetaPoco Sql object or a query string and list of parameters.
+
+The stored procedure execution is a little different.  .NET requires you to know the name of the SQL parameters it's executing.  To simplify the process (which does require a little bit of overhead), it first queries the stored procedure using "sys.sp_sproc_columns" (so the user will need access to execute this stored procedure) to return a list of parameters and then matches those up sequentially with the parameter array.  If you would prefer not do use this, there is also an option to pass a Dictionary<string, object> with the parameter names instead.
+
+
 
 
 
